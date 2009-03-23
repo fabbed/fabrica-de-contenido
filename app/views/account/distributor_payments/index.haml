@@ -1,0 +1,35 @@
+-title("Pagos")
+= render_main_tabnav(current_user.class.name)
+
+
+%h2 Pagos solucitados
+
+%table#mytable{:cellspacing=>"0"}
+  %tr#pendings_title_row
+    %th Fecha del pedido
+    %th Autor
+    %th Cantidad de dinero
+    %th Comisión
+    %th Estado
+    %th Aciones
+  -if @pending_payments.present?
+    =render :partial => 'payments/payment', :collection => @pending_payments, :locals => {:type => "pending"}
+  -else
+    %tr
+      %td.bold.center{:colspan => 5}="No hay Pagos solucitados"
+  
+
+
+%h2 Pagos efectuados
+%table#mytable{:cellspacing=>"0"}
+  %tr#payed_title_row
+    %th Fecha del pedido
+    %th Autor
+    %th Cantidad de dinero
+    %th Comisión    
+    %th Estado
+  -if @payed_payments.present?
+    =render :partial => 'payments/payment', :collection => @payed_payments, :locals => {:type => "payed"}
+  -else
+    %tr
+      %td.bold.center{:colspan => 5}="No hay Pagos efectuados"

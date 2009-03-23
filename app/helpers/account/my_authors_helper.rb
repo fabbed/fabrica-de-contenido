@@ -1,0 +1,2 @@
+module Account::MyAuthorsHelper
+end

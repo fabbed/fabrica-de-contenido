@@ -1,0 +1,24 @@
+<h1>Editing qualities</h1>
+
+<% form_for(@qualities) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :stars %><br />
+    <%= f.text_field :stars %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @qualities %> |
+<%= link_to 'Back', qualities_path %>

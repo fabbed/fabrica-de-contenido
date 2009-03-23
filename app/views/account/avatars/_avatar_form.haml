@@ -1,0 +1,8 @@
+= error_messages_for :user
+
+- form_for "user", :url => account_avatar_path, :html => { :multipart => true } do |f|
+  %p
+    = f.label :avatar, "Seleciona tu foto"
+    = f.file_field :avatar
+  %p
+    = f.submit "Subir foto"

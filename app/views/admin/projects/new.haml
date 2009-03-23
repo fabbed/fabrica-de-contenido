@@ -1,0 +1,23 @@
+-title("Admin Area")
+= render_main_tabnav(current_user.class.name)
+    
+%h1 Listing projects
+
+-form_for(@project) do |f|
+  = f.error_messages
+  
+  %p
+    Name:
+    %br
+    =f.text_field :name
+
+  %p
+    Description:
+    %br
+    =f.text_area :description
+
+  
+  %p
+    = f.submit 'Create'
+    
+= link_to 'Back', projects_path

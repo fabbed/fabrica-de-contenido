@@ -1,0 +1,29 @@
+Wiki:
+  Database: gringos
+  suffix: oletextos_
+  www.4gringos.com/oletextos
+
+Shortcuts Concept Draw
+  -CMD + 0   Zoom to whole page
+  -Cmd + Opt + B	Send to Back
+  -Cmd + Opt + F	Bring to Front
+  -Cmd + Left/Right
+  -Cmd + G	Group the selected shapes into one
+  -Cmd + U	Ungroup
+
+
+  -Ctrl + 1	Activate Select tool
+  
+  Cmd + Opt + "="	Increase font
+Cmd + Opt + "-"	Decrease font
+CMD + D  Duplicate Shape
+
+
+
+Transactions
+  Transaction.author_increase_cuenta(money, user)
+  Transaction.author_order_payment(money, author)  
+
+Commands:
+  reload!; Transaction.author_increase_cuenta(Money.new(400000), User.find_by_login("johnny"))
+  reload!; Transaction.author_order_payment(Money.new(300000), User.find_by_login("johnny"))

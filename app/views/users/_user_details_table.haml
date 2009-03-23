@@ -1,0 +1,37 @@
+%table#mytable{:cellspacing=>"0", :summary=>"Projects"}
+  %tr
+    %th Name
+    %th $ en cuenta
+    %th $ efectuado
+    -if current_user.is_admin?
+      %th Rol
+    %th # Texts in Progress
+    %th # Texts to review
+    %th # Finished Texts
+
+  -users.each do |user|
+
+    %tr
+      %td
+        =photo_and_user_link(user, :thumb)
+
+      -if user.is_author?
+        %td= formated_money(user.cuenta, current_user.currency)
+      -else
+        %td No Hay
+              
+      %td
+        =formated_money((user.received - user.pending_payments_as_money), current_user.currency)
+        -if user.pending_payments_as_money.cents > 10
+          %br
+          %span.red
+            ="#{formated_money(user.pending_payments_as_money, current_user.currency)} solucitado"
+
+
+
+
+      -if current_user.is_admin?
+        %td=user.class.name
+      %td=user.jobs.in_progress.size
+      %td=user.jobs.to_review.size
+      %td=user.jobs.finished.size

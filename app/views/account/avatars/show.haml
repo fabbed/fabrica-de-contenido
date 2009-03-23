@@ -1,0 +1,9 @@
+-title("Subir un foto")
+= render_main_tabnav(current_user.class.name)
+
+%h1 Mi perfil
+
+
+
+%h2 Mi Foto
+= render :partial => "account/avatars/avatar_form", :locals => { :user => @user }

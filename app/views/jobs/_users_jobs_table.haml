@@ -1,0 +1,20 @@
+%h3="#{title} (#{jobs.size})"
+
+%table#mytable{:cellspacing=>"0"}
+  %caption= title
+  %tr
+    %th Palabras claves
+    %th Calidad
+    %th Status
+    %th # Palabras
+
+  -if jobs.present?
+    -jobs.each do |job|
+      %tr
+        %td= job.keywords
+        %td= job.quality.stars
+        %td= job.status.label
+        %td= job.words
+  -else
+    %tr
+      %td.bold.center{:colspan => 4}="No hay jobs de esto tipo"

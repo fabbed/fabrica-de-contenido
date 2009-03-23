@@ -1,0 +1,18 @@
+<p>
+  <b>Stars:</b>
+  <%=h @qualities.stars %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @qualities.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @qualities.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_qualities_path(@qualities) %> |
+<%= link_to 'Back', qualities_path %>

@@ -1,0 +1,25 @@
+-title("Projecto: #{@project.name} (#{@project.jobs.size} Jobs)")
+= render_main_tabnav(current_user.class.name)
+
+%h1= "Project: #{@project.name}"
+
+= link_to 'Add job', new_admin_project_job_path
+
+%table#mytable{:cellspacing=>"0", :summary=>"Projects"}
+  %caption Projects
+  %tr
+    %th Palabras claves
+    %th Status
+    %th Owner
+    %th # Palabras
+
+  -if @project.jobs.present?
+    -@project.jobs.each do |job|
+      %tr
+        %td= job.keywords
+        %td= job.status.label
+        %td= job.user.fullname if job.user
+        %td= job.words
+  -else
+    %tr
+      %td.bold.center{:colspan => 4}="No hay jobs en este projecto"

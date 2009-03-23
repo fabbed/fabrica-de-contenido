@@ -1,0 +1,7 @@
+-title("Distributor - Detalles de mis autores")
+= render_main_tabnav(current_user.class.name)
+
+%h1 Detalles de mis autores
+
+-if current_user.authors.present?
+  =render :partial => "/users/user_details_table", :locals => {:title => "Detalles de mis autores", :users => current_user.authors}

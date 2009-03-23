@@ -1,0 +1,39 @@
+-title("New job for project '#{@project.name}'")
+= render_main_tabnav(current_user.class.name)
+
+%h1= "New job for project '#{@project.name}'"
+= error_messages_for :job
+
+- form_for :job, :url => admin_project_jobs_path do |f|
+  #new_job
+
+    %table
+      %tr
+        %td Words
+        %td
+          = f.text_field  :words_minimum, :value => "250", :class => "small_input"
+          = "-"
+          = f.text_field  :words_maximum, :value => "300", :class => "small_input"
+        %td &nbsp;
+        %td Quality
+        %td= select("job", "quality_id", Quality.find(:all).collect {|p| [ p.name, p.id ] }, :include_blank => true)
+      %tr
+        %td Pre-Assign
+        %td= select("job", "author_id", User.find(:all).collect {|p| [ p.login, p.id ] }, { :include_blank => true })
+        %td &nbsp;
+        / %td Project
+        / %td= select("job", "project_id", Project.find(:all).collect {|p| [ p.name, p.id ] }, :include_blank => true)
+
+    %p
+      Palabras claves
+      %br
+      = f.text_field :keywords, :class => "big_input"
+    %p
+      Instructiones
+      %br
+      ~ f.text_area :instructions, :size => "70x15"
+    
+    %p
+      = submit_tag 'New'
+
+= link_to 'Back', jobs_path

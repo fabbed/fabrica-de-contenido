@@ -1,0 +1,77 @@
+-title("#{@user.class.name}: #{@user.fullname}")
+= render_main_tabnav(current_user.class.name)
+    
+%h1= "#{@user.class.name}: #{@user.fullname}"
+
+
+.grid_5.alpha
+  =image_tag @user.avatar(:medium)
+.grid_11.omega
+  %h2 Informaciones generales
+  %fieldset
+    =info_field "Nombre", @user.name
+    =info_field "Apellido", @user.surname
+    =info_field "Sexo", @user.spanish_gender
+    =info_field "País", @user.country.name
+    =info_field "Edad", @user.age
+    =info_field "Email", @user.email
+    =info_field "Registrado desde", my_date(@user.activated_at)
+    -if @user.is_author?
+      =info_field "Distribudor", (link_to @user.distributor.fullname, user_path(@user.distributor))
+
+
+
+-if @user.is_author?
+  .grid_16.alpha
+    %h2="Textos"
+    
+    -if @user.has_any_text_activity?
+      =render :partial => "/jobs/users_jobs_table", :locals => {:title => "Jobs en progreso", :jobs => @user.jobs.in_progress} if @user.jobs.in_progress.present?
+      =render :partial => "/jobs/users_jobs_table", :locals => {:title => "Jobs para revisar", :jobs => @user.jobs.to_review} if @user.jobs.to_review.present?
+      =render :partial => "/jobs/users_jobs_table", :locals => {:title => "Jobs terminados", :jobs => @user.jobs.finished} if @user.jobs.finished.present?
+
+    -else
+      No tiene ningun Texto
+
+-if current_user.is_admin? and @user.is_author?
+  .grid_16.alpha
+    %h2="Transactions"
+
+    %table#mytable{:cellspacing=>"0", :summary=>"Projects"}
+      %tr
+        %th Fecha
+        %th Tipo
+        %th Dinero
+        %th Para
+
+      -if @user.transactions.present? 
+        -@user.transactions.each do |transaction|
+          %tr
+            %td= my_date(transaction.created_at)
+            %td= transaction.transaction_type
+            %td= formated_money(transaction.amount)
+            %td= link_to(transaction.receiver.fullname, user_path(transaction.receiver))    
+      -else
+        No hayn transacciones
+
+
+-if @user.is_distributor?
+  .grid_16.alpha
+    %h2="Autores"
+    
+  %table#mytable{:cellspacing=>"0", :summary=>"Projects"}
+    %caption="Autores de #{@user.fullname}"
+    %tr
+      %th Name
+      %th # Texts in Progress
+      %th # Texts to review
+      %th # Finished Texts
+
+    -@user.authors.each do |user|
+      %tr
+        %td
+          =thumb_photo_and_user_link(user)
+        %td=user.jobs.in_progress.size
+        %td=user.jobs.to_review.size
+        %td=user.jobs.finished.size    
+

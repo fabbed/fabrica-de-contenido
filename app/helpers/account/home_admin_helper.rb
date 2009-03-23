@@ -1,0 +1,2 @@
+module Account::HomeAdminHelper
+end

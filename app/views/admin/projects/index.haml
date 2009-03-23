@@ -1,0 +1,29 @@
+-title("Admin Area")
+= render_main_tabnav(current_user.class.name)
+    
+%h1 Listing projects
+
+%table#mytable{:cellspacing=>"0", :summary=>"Projects"}
+  %caption Projects
+  %tr
+    %th Name
+    %th # Pending
+    %th # Taken
+    %th # Finished
+    %th Admin    
+    %th{:colspan => 4} Actions
+
+  -@projects.each do |project|
+    %tr
+      %td= link_to project.name, admin_project_jobs_path(project)
+      %td= project.jobs.status("pending").size
+      %td= project.jobs.status("taken")
+      %td= project.jobs.status("ready")
+      %td= project.administrator.fullname
+      %td= link_to 'Add job', new_admin_project_job_path(project)
+      %td= link_to 'Show jobs', admin_project_jobs_path(project)
+      %td= link_to 'Edit', edit_admin_project_path(project)
+      %td= link_to 'Destroy', admin_project_path(project), :confirm => 'Are you sure?', :method => :delete
+
+
+= link_to 'New project', new_admin_project_path

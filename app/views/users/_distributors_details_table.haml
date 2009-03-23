@@ -1,0 +1,20 @@
+%table#mytable{:cellspacing=>"0"}
+  %tr
+    %th Name
+    %th $ Liquidez
+    %th $ Solucitado
+    %th $ Efectuado    
+    %th $ Cuenta
+    %th # Authors
+    
+  -users.each do |user|
+    %tr
+      %td
+        =photo_and_user_link(user, :thumb)
+      %td= formated_money(user.liquid_account.balance, current_user.currency)
+      %td.red
+        -if user.payments.pending.sum(:amount_in_cents) > 0
+          = formated_money(Money.new(user.payments.pending.sum(:amount_in_cents)), current_user.currency)
+      %td= formated_money(Money.new(user.payments.payed.sum(:amount_in_cents)), current_user.currency)
+      %td= formated_money(user.cuenta, current_user.currency)
+      %td= user.authors.size

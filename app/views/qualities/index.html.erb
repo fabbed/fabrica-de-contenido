@@ -1,0 +1,24 @@
+<h1>Listing qualities</h1>
+
+<table>
+  <tr>
+    <th>Stars</th>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+
+<% @qualities.each do |qualities| %>
+  <tr>
+    <td><%=h qualities.stars %></td>
+    <td><%=h qualities.name %></td>
+    <td><%=h qualities.description %></td>
+    <td><%= link_to 'Show', qualities %></td>
+    <td><%= link_to 'Edit', edit_qualities_path(qualities) %></td>
+    <td><%= link_to 'Destroy', qualities, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New qualities', new_qualities_path %>

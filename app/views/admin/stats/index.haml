@@ -1,0 +1,140 @@
+-title("Admin - User Administration")
+= render_main_tabnav(current_user.class.name)
+    
+%h1 Estadísticas
+
+
+%h2 Transacciones
+
+%table#mytable{:cellspacing=>"0", :summary=>"Projects"}
+  %tr
+    %th Fecha
+    %th Tipo
+    %th Dinero
+    %th Autor
+
+  -Transaction.each do |transaction|
+    %tr
+      %td= my_date(transaction.created_at)
+      %td= transaction.transaction_type
+      %td= formated_money(transaction.amount, current_user.currency)
+      %td= link_to(transaction.receiver.fullname, user_path(transaction.receiver))
+
+
+
+%h2 Payment
+
+%table#mytable{:cellspacing=>"0"}
+  %tr#pendings_title_row
+    %th Fecha del pedido
+    %th Autor
+    %th Distruibidor responsable
+    %th Cantidad de dinero
+    %th Comisión
+    %th Estado
+    
+  -if Payment.all.present?
+    -Payment.all.each do |payment|
+      %tr
+        %td= my_date(payment.created_at)
+        %td= link_to(payment.receiver.fullname, user_path(payment.receiver))
+        %td= link_to(payment.distributor.fullname, user_path(payment.distributor))
+        %td= formated_money(payment.amount, current_user.currency)
+        %td= formated_money(payment.commission, current_user.currency)
+        %td= show_payment_status(payment)
+
+  -else
+    %tr
+      %td.bold.center{:colspan => 5}="No hay Pagos"
+
+
+
+
+      
+      
+
+
+%h2 Economicas
+
+.grid_7.alpha
+  %table#mytable.td_title_table{:cellspacing=>"0"}
+    %tr
+      %td.title.center.black{:colspan => 2} Autores
+    %tr
+      %td.title $ en cuentas
+      %td= formated_money(Money.new(Author.sum(:cuenta_in_cents)), current_user.currency)
+    
+
+    %tr
+      %td.title $ efectuado
+      %td= formated_money((Payment.payed_as_money), current_user.currency)
+
+    %tr
+      %td.title $ solucitado
+      %td= formated_money((Payment.pending_as_money), current_user.currency)
+
+
+
+  .h_20
+
+  %table#mytable.td_title_table{:cellspacing=>"0"}
+    %tr
+      %td.title.center.black{:colspan => 2} Distribudores
+    %tr
+      %td.title $ recibido
+      %td
+        = formated_money((Money.new(Distributor.sum(:cuenta_in_cents))), current_user.currency)
+
+
+    %tr
+      %td.title $ cuentas de liquidez
+      %td
+        = formated_money(Money.new(LiquidAccount.sum(:balance_in_cents)), current_user.currency)
+        -if Payment.pending_as_money.cents > 10
+          %br
+          %span.red
+            =link_to(formated_money(Payment.pending_as_money, current_user.currency), {:controller => :distributor_payments}, :class => "red")
+            solucitado
+
+
+
+.clear
+
+.grid_7.alpha
+  %h2 Usuarios
+
+  %table#mytable.td_title_table{:cellspacing=>"0"}
+    %tr
+      %td.title # Distribuidores
+      %td= Distributor.active.count
+    %tr  
+      %td.title # Administradores
+      %td= Administrator.active.count
+    %tr  
+      %td.title # Autores
+      %td= Author.active.count    
+    
+      
+.grid_7.omega.prefix_2
+  %h2 Textos
+
+  %table#mytable.td_title_table{:cellspacing=>"0"}
+    %tr
+      %td.title # libres
+      %td= Job.pending.count
+    %tr  
+      %td.title # necesitan revision
+      %td= Job.to_review.count
+    %tr  
+      %td.title # en processo
+      %td= Job.in_progress.count
+    %tr  
+      %td.title # terminados
+      %td= Job.finished.count
+
+
+
+      
+
+
+.clear

@@ -1,0 +1,50 @@
+-title("Distributor - Mis estadísticas")
+= render_main_tabnav(current_user.class.name)
+    
+%h2 Economicas
+%table#mytable.td_title_table{:cellspacing=>"0"}
+  %tr
+    %td.title Cuenta de liquidez
+    %td= formated_money(current_user.liquid_account.balance)
+  
+
+%h2 Totales de mis autores
+
+%table#mytable.td_title_table{:cellspacing=>"0"}
+  %tr
+    %td.title # Autores
+    %td= current_user.authors.count
+
+.h_20
+
+%table#mytable.td_title_table{:cellspacing=>"0"}
+  %tr
+    %td.title.left.black{:colspan => 2} Pagos
+  %tr
+    %td.title # Pagos solucitados
+    %td= current_user.payments.pending.size
+  %tr
+    %td.title # Pagos efectuados
+    %td= current_user.payments.payed.size
+
+.h_20
+
+%table#mytable.td_title_table{:cellspacing=>"0"}
+  %tr
+    %td.title.left.black{:colspan => 2} Textos
+  %tr
+    %td.title # Textos que necesitan revision
+    %td= current_user.jobs_to_review.size
+  %tr  
+    %td.title # Textos en processo
+    %td= current_user.jobs_in_process.size
+  %tr  
+    %td.title # Textos terminados
+    %td= current_user.jobs_finished.size
+
+
+
+%h2 Detalles de mis autores
+
+-if current_user.authors.present?
+  =render :partial => "/users/user_details_table", :locals => {:title => "Detalles de mis autores", :users => current_user.authors}

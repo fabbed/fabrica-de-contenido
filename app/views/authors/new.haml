@@ -1,0 +1,71 @@
+= error_messages_for :author
+
+- form_for @author, :url => authors_path do |f|
+
+  .grid_12.prefix_2.suffix_2.bottom-margin-20
+
+    %h1 Registrar cómo escritor nuevo
+  
+    %fieldset
+      %legend Datos generales
+
+      %label.grid_2.alpha{:for => "author_name"} Nombre
+      .grid_4.omega
+        = f.text_field :name
+
+      %label.grid_2.alpha{:for => "author_surname"} Apellido
+      .grid_4.omega
+        = f.text_field :surname
+
+      %label.grid_2.alpha{:for => "author_gender"} Sexo
+      .grid_4.omega
+        = f.select :gender, [[ "Hombre", :male ], [ "Mujer", :female ]], :include_blank => true
+
+
+      %label.grid_2.alpha{:for => "author_country"} País
+      .grid_4.omega
+        =select("author", "country_id", Country.for_select_box, { :include_blank => true })
+
+      %label.grid_2.alpha{:for => "author_city"} Ciudad
+      .grid_4.omega
+        = f.text_field :city
+
+      %label.grid_2.alpha{:for => "author_address1"} Dirrecion
+      .grid_4.omega
+        = f.text_field :address1
+
+      %label.grid_2.alpha{:for => "author_address1"} Fecha de nacimiento
+      .grid_4.omega
+        = date_select("author", "birth_date", :start_year => 1960, :end_year => 1992, :use_month_numbers => false,  :include_blank => true, :order => [:day, :month, :year], :use_month_names => spanish_month_names)
+
+
+    %fieldset
+      %legend Codigo de affiliado
+
+      %label.grid_2.alpha{:for => "author_distributor_code"} Código affiliado
+      .grid_4.omega
+        = f.text_field :distributor_code, :value => @author.distributor_code
+
+    %fieldset
+      %legend Datos de login
+
+      %label.grid_2.alpha{:for => "author_email"} E-Mail
+      .grid_4.omega
+        = f.text_field :email
+
+      %label.grid_2.alpha{:for => "author_password"} Contraseña
+      .grid_4.omega
+        = f.password_field :password
+
+
+      %label.grid_2.alpha{:for => "author_email"} Confirmación de Contraseña
+      .grid_4.omega
+        = f.password_field :password_confirmation
+
+      .clear
+      .grid_4.prefix_2.alpha
+        = submit_tag 'Sign up'
+
+.clear
+
+=#render :partial => "authors/js_validation", :locals => { :form_id => "new_author" }

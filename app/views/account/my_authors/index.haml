@@ -1,0 +1,9 @@
+-title("Mis escritores")
+= render_main_tabnav(current_user.class.name)
+
+.grid_12.prefix_2.suffix_2.top-margin-20
+  %h2= "Hola #{current_user.name}!"
+
+  -if @authors.present?
+    -@authors.each_with_index do |author, i|
+      ="#{i+1}. #{author.name} #{author.surname}"

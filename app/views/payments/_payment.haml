@@ -1,0 +1,12 @@
+%tr{:id => dom_id(payment), :class => (type == "payed" ? "payed_payment" : "pending_payment")}
+  %td= my_date(payment.created_at)
+  %td= link_to(payment.receiver.fullname, user_path(payment.receiver))
+  %td= formated_money(payment.amount, current_user.currency)
+  %td= formated_money(payment.commission, current_user.currency)
+  %td= show_payment_status(payment)
+  -if !payment.is_payed
+    %td
+      - form_tag mark_as_payed_payment_path(payment), :id => "mark_as_payed_form" do
+        =submit_tag "Markear como pagado", :class=>"mark_as_payed_button"
+
+

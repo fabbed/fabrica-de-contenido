@@ -1,0 +1,16 @@
+-title("Admin - User Administration")
+= render_main_tabnav(current_user.class.name)
+    
+%h1 Usuarios
+
+%h2 Autores
+=render :partial => "/users/user_details_table", :locals => {:title => "Detalles de mis autores", :users => Author.all}
+
+
+%h2 Distribudores
+=render :partial => "/users/distributors_details_table", :locals => {:title => "Detalles de mis autores", :users => Distributor.all}
+
+
+/ %h2 Administradores
+/ =render :partial => "/users/user_details_table", :locals => {:title => "Detalles de mis autores", :users => Administrator.all}
+

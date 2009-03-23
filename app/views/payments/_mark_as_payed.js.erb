@@ -1,0 +1,18 @@
+$("#<%= dom_id(@payment)%>").fade("slow", function(){$(this).remove()})
+
+
+$(".payed_payment").remove()
+$("#no_hay").remove()
+
+
+$("#payed_title_row").after("<%= escape_javascript(   render :partial => 'payments/payment', :collection => @payed_payments, :locals => {:type => 'payed'} ) %>").appear("slow")
+
+
+$.jGrowl("<%= escape_javascript(flash.delete(:notice)) %>", { sticky: true, header: 'Pago realizado' });
+
+
+$("#users_current_account_money").html("<%=formated_money(current_user.cuenta, current_user.currency)%>").pulsate()
+
+
+
+
