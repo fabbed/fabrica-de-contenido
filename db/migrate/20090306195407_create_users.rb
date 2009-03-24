@@ -79,7 +79,7 @@ class CreateUsers < ActiveRecord::Migration
         ]
 
     authors_to_create.each do |user_hash|
-      user = Author.new(standard_data.merge(user_hash))
+      user = Author.create!(standard_data.merge(user_hash))
       user.activate
       user.currency = "CLP"
       user.save!
