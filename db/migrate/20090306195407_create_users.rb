@@ -74,8 +74,8 @@ class CreateUsers < ActiveRecord::Migration
     DistributorCode.create(:code => "santiago_de_chile",  :user_id => User.find_by_login("julian").id, :user_count => 0)
 
     authors_to_create=[
-        {:distributor_code => "santiago_de_chile",  :login => "brad", :name => "Brad", :surname => "Pit", :email => "brad_author@xalut.com", :password => "red098", :password_confirmation => "red098", :gender => "male", :birth_date => "14.02.1983", :address1 => "Cale Suecia 2094", :city => "Santiago de Chile", :country_id => 440, :distributor_id => User.find_by_login("julian").id},
-        {:distributor_code => "santiago_de_chile",  :login => "johnny", :name => "johnny", :surname => "Depp", :email => "johnny_author@xalut.com", :password => "red098", :password_confirmation => "red098", :gender => "male", :birth_date => "14.02.1983", :address1 => "Cale Suecia 2094", :city => "Santiago de Chile", :country_id => 440, :distributor_id => User.find_by_login("julian").id}
+        {:distributor_code => "santiago_de_chile",  :login => "brad", :name => "Brad", :surname => "Pit", :email => "brad_author@xalut.com", :password => "red098", :password_confirmation => "red098", :gender => "male", :address1 => "Cale Suecia 2094", :city => "Santiago de Chile", :country_id => 440, :distributor_id => User.find_by_login("julian").id},
+        {:distributor_code => "santiago_de_chile",  :login => "johnny", :name => "johnny", :surname => "Depp", :email => "johnny_author@xalut.com", :password => "red098", :password_confirmation => "red098", :gender => "male", :address1 => "Cale Suecia 2094", :city => "Santiago de Chile", :country_id => 440, :distributor_id => User.find_by_login("julian").id}
         ]
 
     authors_to_create.each do |user_hash|
