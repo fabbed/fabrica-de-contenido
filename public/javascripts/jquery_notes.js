@@ -1,3 +1,7 @@
+Clear field
+  $(".clear_field").val("")
+
+
 Jquery Stuff  
   $("#title_row").after("<%= escape_javascript(     render :partial => 'payments/payment', :collection => @payments  ) %>")
   $(".shown_payments").hide().appear()

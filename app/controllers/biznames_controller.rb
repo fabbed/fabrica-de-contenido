@@ -43,16 +43,15 @@ class BiznamesController < ApplicationController
   # POST /biznames
   # POST /biznames.xml
   def create
-    @biznames = Bizname.new(params[:biznames])
+    @bizname = Bizname.new(params[:bizname])
 
-    respond_to do |format|
-      if @biznames.save
-        flash[:notice] = 'Bizname was successfully created.'
-        format.html { redirect_to(@biznames) }
-        format.xml  { render :xml => @biznames, :status => :created, :location => @biznames }
+    respond_to do |wants|
+      if @bizname.save
+        wants.js do
+          render :partial => "bizname_created"
+        end
+          wants.html { redirect_to :controller => "account/distributor_payments"}
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @biznames.errors, :status => :unprocessable_entity }
       end
     end
   end

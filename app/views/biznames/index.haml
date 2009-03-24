@@ -6,67 +6,93 @@
     %p
       Elena y yo estamos planeando montar un pequeño negocio en el futoro...
       Para encontrar un nombre pensabamos en preguntar nuestros amigos para ayuda...
+    .fr
+      =image_tag "biznames/youtube_example.png"
+
     %p
       Buscamos un Nombre y una tagline. El nombre va a ser la dominia de la pagina, lo que muestra el logo, etc.
       %br
       La tagline es una frase o algunas palabras que estan abajo del logo:
-    
-    .center
-      =image_tag "biznames/youtube_example.png"
       
     %h2 ¿De qué trata el negocio?
-    blablabla
-    
-    %br
+    %p
+      En pocas palabras, y para aquellos no versados en la materia, consiste en una compra y venta de textos a trav'es de internet.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+    .center
+      =image_tag "biznames/gfx_biz_model.png", :style => "margin-bottom: 15px; "
+    %p
+      Por un lado hay clientes que demandan textos y, por otro, autores que los escriben. Por tanto la p'agina tendr'a esas dos partes diferenciadas: una a la que acceden aquellos interesados en conseguir contenido para sus sitios webs y otra para los quieren ganar dinero r'apido escribiendo sobre temas en los que no necesutan ser expertos.
+    %p
+      Nosotros estamos en medio ofreciendo un lugar para el intercambio, pagando a los escritores y siendo pagados por los que buscan contenido.    
   
-    .h_20
-    %h2 Tu sugestión
-    - form_for(@bizname) do |f|
-      = f.error_messages
-      .grid_6.alpha
-        %p
-          = f.label :name, "Nombre del negocio/pagina:"
-          %br
-          = f.text_field :name
-        %p
-          = f.label :tagline, "Tagline:"
-          %br
-          = f.text_field :tagline
-        %p
-          = f.label :friend, "Tu nombre:"
-          %br
-          = f.text_field :friend
-        %p
-          = f.label :friend, "Tu email:", :class => "with_subtitle"
-          %br 
-          %span.subtitle Danos tu Email si quieres recibir noticias sobre nuestro negocio
-          %br
-          = f.text_field :friend
+    .clear
 
-
-      .grid_4.omega
-        %p
-          = f.label :comment, "Comentario, Descripcion:"
-          %br
-          = f.text_area :comment, :size => "37x15"
-      .clear
-      %p
-        = f.submit 'Mandar sugestión', :id => "submit"
-      
+    %h2 ¿Que debo hazer?
+    %p
+      En los campos abajo puedes mandar tu sugestion.
+      Unos amigos ya lo hizieron, asi te puedes inpirar y ver lo que dijeron los demas pinchando a la enlace que esta abajo.
+    %p
+      Pensamos que es mejor si primero piensas solo, para no ser influido por los demas, asi generamos las mejores ideas.
+    %p
+      blabla
     
-    =link_to_function("Mostrar lo que dijeron los demas", "show_suggestions()", :class => "very_big_link")
+    .div{:style => "height: 0px; border: solid 1px #DDDDDD; padding: 0px 10px 0px 10px"}
+    
+    #suggestion_form
+      %h2 Tu sugestión
+      - form_for @bizname do |f|
+        = f.error_messages
+        .grid_6.alpha
+          %p
+            = f.label :name, "Nombre del negocio/pagina:"
+            %br
+            = f.text_field :name, :class => "clear_field"
+          %p
+            = f.label :tagline, "Tagline:"
+            %br
+            = f.text_field :tagline, :class => "clear_field"
+          %p
+            = f.label :friend, "Tu nombre:"
+            %br
+            = f.text_field :friend
+          %p
+            = f.label :email, "Tu email:", :class => "with_subtitle"
+            %br 
+            %span.subtitle
+              Danos tu Email si quieres recibir noticias sobre nuestro negocio (No vamos a mostrar tu email a nadie)
+            %br
+            = f.text_field :email
+
+
+        .grid_4.omega
+          %p
+            = f.label :comment, "Comentario, Descripcion:"
+            %br
+            = f.text_area :comment, :size => "37x15"
+        .clear
+        %p
+          = f.submit 'Mandar sugestión', :id => "submit"
+      
+    .div{:style => "height: 0px; border: solid 1px #DDDDDD; padding: 0px 10px 0px 10px"}    
+
+    .h_20
+    .center
+      =link_to_function("Mostrar lo que dijeron los demas", "show_suggestions()", :id => "show_suggestions_link", :class => "very_big_link")
+      =link_to_function("Quiero hazer otra sugestión", "another_suggestion()", :id => "another_suggestion_link", :class => "very_big_link hidden")
+      
     .h_20
     #suggestions_table.hidden
+      %h2 Sugestiónes de los demas
       %table#my_table
         %tr
           %th
-            Name
+            Nombre del negocio/página
           %th
             Tagline
           %th
-            Comment
+            Comentario
           %th
-            Friend
+            Surgerencia de...
         - @biznames.each do |biznames|
           %tr
             %td
@@ -77,12 +103,52 @@
               = h biznames.comment
             %td
               = h biznames.friend
-            %td
-              = link_to 'Show', biznames
-            %td
-              = link_to 'Edit', edit_biznames_path(biznames)
-            %td
-              = link_to 'Destroy', biznames, :confirm => 'Are you sure?', :method => :delete
 
-      / %br
-      / = link_to 'New biznames', new_bizname_path
+
+- content_for :javascript do
+  :javascript
+    $(document).ready(function() {
+      var validator = $("#new_bizname").validate({
+        rules: {
+          "bizname[name]": {
+            required: true,
+            minlength: 3,
+            maxlength: 40
+          },
+          "bizname[tagline]": {
+            required: true
+          },
+          "bizname[email]": {
+            email: true
+          }
+          
+        
+        },
+        messages: {
+          "bizname[name]": {
+            required: "Porfavor ayudanos y llena este campo",
+            minlength: "Al menos 3 letras",
+            maxlength: "No mas que 40 letras"
+            },
+          "bizname[tagline]": {
+            required: "Porfavor ayudanos y llena este campo",
+            minlength: "Al menos 3 letras",
+            maxlength: "No mas que 40 letras"
+            },
+          "bizname[email]": {
+              email: "No es un email valido"
+            }
+          
+          
+          },
+
+      submitHandler: function(form) {
+          $(form).ajaxSubmit({ 
+              success: function(response){
+                eval(response);
+              }
+           });
+      }        
+        
+      });
+    });

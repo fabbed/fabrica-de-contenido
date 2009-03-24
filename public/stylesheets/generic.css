@@ -70,3 +70,7 @@ div.fieldWithErrors {
 
 .black {
   color: black; }
+
+label.error {
+  color: red;
+  font-size: 11px; }
