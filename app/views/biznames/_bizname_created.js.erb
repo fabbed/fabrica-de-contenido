@@ -1,0 +1,15 @@
+$.jGrowl("<%= escape_javascript(flash.delete(:notice)) %>", { sticky: true, header: '¡Gracias!' });
+$("#suggestion_form").blindUp()
+
+$("#another_suggestion_link").show()
+$("#show_suggestions_link").hide()
+
+$(".clear_field").value = ""
+$("textarea").attr("value", "")
+
+show_suggestions()
+
+
+
+
+
