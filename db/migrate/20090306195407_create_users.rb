@@ -44,7 +44,7 @@ class CreateUsers < ActiveRecord::Migration
         :password => "red098", 
         :password_confirmation => "red098", 
         :gender => "female", 
-        :birth_date => "14.02.1983", 
+        :birth_date => Date.today, 
         :country_id => Country.find_by_name("España").id,
         :currency => "CLP"
       }
@@ -59,7 +59,6 @@ class CreateUsers < ActiveRecord::Migration
       
     admins_to_create.each do |user_hash|
       user = Administrator.new(standard_data.merge(user_hash))
-      user.birth_date = "14.02.1983"
       user.activate
       user.currency = "CLP"
       user.save!
