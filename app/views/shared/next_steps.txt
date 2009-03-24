@@ -27,3 +27,64 @@ Transactions
 Commands:
   reload!; Transaction.author_increase_cuenta(Money.new(400000), User.find_by_login("johnny"))
   reload!; Transaction.author_order_payment(Money.new(300000), User.find_by_login("johnny"))
+
+
+
+
+
+
+1 production:                                                                                                                              
+2     adapter: mysql
+3     encoding: utf8
+4     database: escribir_y_ganar
+5     username: fabbed
+6     password: f4b8ed
+7     socket: /var/run/mysqld/mysqld.sock
+
+
+
+
+
+
+
+
+ 1 # Be sure to restart your server when you modify this file                                                                              
+ 2 
+ 3 # Specifies gem version of Rails to use when vendor/rails is not present
+ 4 RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
+ 5 RAILS_ENV='production'
+ 6 # Bootstrap the Rails environment, frameworks, and default configuration
+ 7 require File.join(File.dirname(__FILE__), 'boot')
+ 8 
+ 9 
+10 Rails::Initializer.run do |config|
+11   config.active_record.observers = :user_observer
+12 
+13   config.gem 'ryanb-scope-builder', :lib => 'scope_builder'
+14   config.gem 'fastercsv'
+15   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
+16   config.gem 'RedCloth', :lib => 'redcloth'
+17   # Settings in config/environments/* take precedence over those specified here.
+18   # Application configuration should go into files in config/initializers
+19   # -- all .rb files in that directory are automatically loaded.
+20 
+21   # Add additional load paths for your own custom dirs
+22   # config.load_paths += %W( #{RAILS_ROOT}/extras )
+23 
+24   # Specify gems that this application depends on and have them installed with rake gems:install
+25   # config.gem "bj"
+26   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
+27   # config.gem "sqlite3-ruby", :lib => "sqlite3"
+28   # config.gem "aws-s3", :lib => "aws/s3"
+29 
+30   # Only load the plugins named here, in the order given (default is alphabetical).
+31   # :all can be used as a placeholder for all plugins not explicitly named
+32   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
+33 
+34   # Skip frameworks you're not going to use. To use Rails without a database,
+35   # you must remove the Active Record framework.
+36   # config.frameworks -= [ :active_record, :active_resource, :action_mailer ]
+37 
+38   # Activate observers that should always be running
+config/environment.rb [Rails-config]                                                                                     1,1-1          Top
+"config/environment.rb" 48L, 2277C
