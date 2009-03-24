@@ -1,5 +1,10 @@
 //Fades out the notice flash message after some seconds
 
+  function show_suggestions() {
+    $("#suggestions_table").blindDown()
+  }
+
+
 function fade_out(time){
   setTimeout(function() {
     $('#flash_messages').blindUp();
@@ -13,6 +18,7 @@ $(document).ready(function() {
   //An den Button wird das behaviour gebunden die form als ajax zu posten
   
   $("#header_info_box").corners();
+  $(".biznames .form").corners();  
   
   $('.mark_as_payed_button').bind('click', function() {
 
@@ -33,6 +39,7 @@ $(document).ready(function() {
       separator:'  '
     }  
   });    
+
 
 
 }); 

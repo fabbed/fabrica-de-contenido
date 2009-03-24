@@ -33,7 +33,7 @@ Git reset --hard
 
 
 
-1 production:                                                                                                                              
+1     production:                                                                                                                              
 2     adapter: mysql
 3     encoding: utf8
 4     database: escribir_y_ganar

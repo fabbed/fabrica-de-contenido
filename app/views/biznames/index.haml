@@ -1,37 +1,88 @@
 .grid_12.prefix_2.suffix_2.bottom-margin-20.biznames
-  %h1
-    Sugestiónes para el nombre del negocio de Elena y Fabian
+  .form
+    %h1
+      Sugestiónes para el nombre del negocio de Elena y Fabian
     
-  %p
-    Elena y yo estamos planeando montar un pequeño negocio en el futoro...
+    %p
+      Elena y yo estamos planeando montar un pequeño negocio en el futoro...
+      Para encontrar un nombre pensabamos en preguntar nuestros amigos para ayuda...
+    %p
+      Buscamos un Nombre y una tagline. El nombre va a ser la dominia de la pagina, lo que muestra el logo, etc.
+      %br
+      La tagline es una frase o algunas palabras que estan abajo del logo:
     
+    .center
+      =image_tag "biznames/youtube_example.png"
+      
+    %h2 ¿De qué trata el negocio?
+    blablabla
     
-  %table
-    %tr
-      %th
-        Name
-      %th
-        Tagline
-      %th
-        Comment
-      %th
-        Friend
-    - @biznames.each do |biznames|
-      %tr
-        %td
-          = h biznames.name
-        %td
-          = h biznames.tagline
-        %td
-          = h biznames.comment
-        %td
-          = h biznames.friend
-        %td
-          = link_to 'Show', biznames
-        %td
-          = link_to 'Edit', edit_biznames_path(biznames)
-        %td
-          = link_to 'Destroy', biznames, :confirm => 'Are you sure?', :method => :delete
+    %br
+  
+    .h_20
+    %h2 Tu sugestión
+    - form_for(@bizname) do |f|
+      = f.error_messages
+      .grid_6.alpha
+        %p
+          = f.label :name, "Nombre del negocio/pagina:"
+          %br
+          = f.text_field :name
+        %p
+          = f.label :tagline, "Tagline:"
+          %br
+          = f.text_field :tagline
+        %p
+          = f.label :friend, "Tu nombre:"
+          %br
+          = f.text_field :friend
+        %p
+          = f.label :friend, "Tu email:", :class => "with_subtitle"
+          %br 
+          %span.subtitle Danos tu Email si quieres recibir noticias sobre nuestro negocio
+          %br
+          = f.text_field :friend
 
-  %br
-  = link_to 'New biznames', new_bizname_path
+
+      .grid_4.omega
+        %p
+          = f.label :comment, "Comentario, Descripcion:"
+          %br
+          = f.text_area :comment, :size => "37x15"
+      .clear
+      %p
+        = f.submit 'Mandar sugestión', :id => "submit"
+      
+    
+    =link_to_function("Mostrar lo que dijeron los demas", "show_suggestions()", :class => "very_big_link")
+    .h_20
+    #suggestions_table.hidden
+      %table#my_table
+        %tr
+          %th
+            Name
+          %th
+            Tagline
+          %th
+            Comment
+          %th
+            Friend
+        - @biznames.each do |biznames|
+          %tr
+            %td
+              = h biznames.name
+            %td
+              = h biznames.tagline
+            %td
+              = h biznames.comment
+            %td
+              = h biznames.friend
+            %td
+              = link_to 'Show', biznames
+            %td
+              = link_to 'Edit', edit_biznames_path(biznames)
+            %td
+              = link_to 'Destroy', biznames, :confirm => 'Are you sure?', :method => :delete
+
+      / %br
+      / = link_to 'New biznames', new_bizname_path

@@ -6,7 +6,6 @@ class CreateBiznames < ActiveRecord::Migration
       t.string :tagline
       t.text :comment
       t.string :friend
-
       t.timestamps
     end
   end

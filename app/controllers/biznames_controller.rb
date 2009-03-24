@@ -6,7 +6,7 @@ class BiznamesController < ApplicationController
   
   def index
     @biznames = Bizname.all
-
+    @bizname = Bizname.new
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @biznames }
