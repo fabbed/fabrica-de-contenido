@@ -90,7 +90,7 @@ class CreateUsers < ActiveRecord::Migration
 
 
    User.all.each do |user|
-     my_file = 'public/images/standard_users/'+user.name+'.jpg'
+     my_file = 'public/images/standard_users/'+(user.name.downcase)+'.jpg'
      f = File.open(my_file, 'r')
      file_data = f.read
      user.cuenta_currency = "CLP"
