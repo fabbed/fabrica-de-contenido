@@ -70,8 +70,9 @@
             %br
             = f.text_area :comment, :size => "37x15"
         .clear
-        %p
-          = f.submit 'Mandar sugestión', :id => "submit"
+        .center
+          %p
+            = f.submit 'Mandar sugestión', :id => "submit"
       
     .div{:style => "height: 0px; border: solid 1px #DDDDDD; padding: 0px 10px 0px 10px"}    
 
@@ -120,6 +121,9 @@
           },
           "bizname[email]": {
             email: true
+          },
+          "bizname[friend]": {
+            required: true
           }
           
         
@@ -130,6 +134,9 @@
             minlength: "Al menos 3 letras",
             maxlength: "No mas que 40 letras"
             },
+          "bizname[friend]": {
+            required: "Dinos quien eres asi ganas algo por el caso que elegimos tu surgerencia"
+          },
           "bizname[tagline]": {
             required: "Porfavor ayudanos y llena este campo",
             minlength: "Al menos 3 letras",
