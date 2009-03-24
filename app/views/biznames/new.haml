@@ -1,0 +1,24 @@
+%h1
+  New biznames
+- form_for(@biznames) do |f|
+= f.error_messages
+%p
+  = f.label :name
+  %br
+  = f.text_field :name
+%p
+  = f.label :tagline
+  %br
+  = f.text_field :tagline
+%p
+  = f.label :comment
+  %br
+  = f.text_field :comment
+%p
+  = f.label :friend
+  %br
+  = f.text_field :friend
+%p
+  = f.submit 'Create'
+- end
+= link_to 'Back', biznames_path
