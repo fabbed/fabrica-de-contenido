@@ -1,1 +1,4 @@
 test/*
+config/database.yml
+config/environment.rb
+log/*
