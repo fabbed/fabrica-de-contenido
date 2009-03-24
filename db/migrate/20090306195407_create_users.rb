@@ -44,7 +44,7 @@ class CreateUsers < ActiveRecord::Migration
         :password => "red098", 
         :password_confirmation => "red098", 
         :gender => "female", 
-        :birth_date => "14.02.1983", 
+        :birth_date => Date.today-25.years, 
         :country_id => Country.find_by_name("España").id,
         :currency => "CLP"
       }

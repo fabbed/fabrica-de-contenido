@@ -28,7 +28,7 @@ Commands:
   reload!; Transaction.author_increase_cuenta(Money.new(400000), User.find_by_login("johnny"))
   reload!; Transaction.author_order_payment(Money.new(300000), User.find_by_login("johnny"))
 
-
+Git reset --hard
 
 
 
