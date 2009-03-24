@@ -1,0 +1,23 @@
+<p>
+  <b>Name:</b>
+  <%=h @biznames.name %>
+</p>
+
+<p>
+  <b>Tagline:</b>
+  <%=h @biznames.tagline %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%=h @biznames.comment %>
+</p>
+
+<p>
+  <b>Friend:</b>
+  <%=h @biznames.friend %>
+</p>
+
+
+<%= link_to 'Edit', edit_biznames_path(@biznames) %> |
+<%= link_to 'Back', biznames_path %>

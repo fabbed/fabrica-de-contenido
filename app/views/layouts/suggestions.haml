@@ -1,0 +1,18 @@
+!!! XML
+!!! Strict
+%html{html_attrs("en")}
+  %head
+    %meta{content_type_attrs("text/html")}
+    %title=yield(:title)
+    = render :partial => "shared/css_includes"
+    = render :partial => "shared/js_includes"
+  %body
+    #content
+      .container_16
+        .grid_16
+          = yield
+        .clear
+              
+    %br.clear
+    = render :partial => "shared/footer"
+    = yield :javascript

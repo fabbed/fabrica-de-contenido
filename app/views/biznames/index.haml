@@ -1,0 +1,37 @@
+.grid_12.prefix_2.suffix_2.bottom-margin-20.biznames
+  %h1
+    Sugestiónes para el nombre del negocio de Elena y Fabian
+    
+  %p
+    Elena y yo estamos planeando montar un pequeño negocio en el futoro...
+    
+    
+  %table
+    %tr
+      %th
+        Name
+      %th
+        Tagline
+      %th
+        Comment
+      %th
+        Friend
+    - @biznames.each do |biznames|
+      %tr
+        %td
+          = h biznames.name
+        %td
+          = h biznames.tagline
+        %td
+          = h biznames.comment
+        %td
+          = h biznames.friend
+        %td
+          = link_to 'Show', biznames
+        %td
+          = link_to 'Edit', edit_biznames_path(biznames)
+        %td
+          = link_to 'Destroy', biznames, :confirm => 'Are you sure?', :method => :delete
+
+  %br
+  = link_to 'New biznames', new_bizname_path
