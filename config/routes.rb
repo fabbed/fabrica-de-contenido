@@ -28,6 +28,8 @@ ActionController::Routing::Routes.draw do |map|
   map.author_signup '/author_signup', :controller => 'authors', :action => 'new'
   map.client_signup '/client_signup', :controller => 'clients', :action => 'new'
 
+  map.ayudanos '/ayudanos-encontrar-un-nombre-de-negocio', :controller => 'biznames', :action => 'index'
+
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.account_home_distributor '/account/home_distributor', :controller => 'account/home_distributor', :action => 'index'
