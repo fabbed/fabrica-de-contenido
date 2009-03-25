@@ -24,6 +24,10 @@ a.red {
   text-decoration: none;
   color: red; }
 
+.startpage {
+  font-size: 14px;
+  line-height: 18px; }
+
 .biznames h1 {
   font-size: 20px; }
 .biznames p {

@@ -1,50 +1,58 @@
 .grid_12.prefix_2.suffix_2.bottom-margin-20.biznames
   .form
-    %h1
-      Sugestiónes para el nombre del negocio de Elena y Fabian
+    %h1{:style => "margin-bottom: 0px;"}
+      Sugerencias para el nombre del negocio de Elena y Fabian
+    %h2.center{:style => "margin-top: 10px;"}
+      ¡Sugiere y gana un <b>premio sorpresa</b>!
     
     %p
-      Elena y yo estamos planeando montar un pequeño negocio en el futoro...
-      Para encontrar un nombre pensabamos en preguntar nuestros amigos para ayuda...
+      Elena y yo estamos planeando montar un pequeño negocio.
+      Como ayuda para encontrar un nombre hemos pensado en preguntar a nuestros amigos.
+      
     .fr
       =image_tag "biznames/youtube_example.png"
 
     %p
-      Buscamos un Nombre y una tagline. El nombre va a ser la dominia de la pagina, lo que muestra el logo, etc.
+      Buscamos nombre y tagline. El nombre será el dominio de la pagina, lo que muestra el logo, etc.
       %br
-      La tagline es una frase o algunas palabras que estan abajo del logo:
+      El tagline es una frase o algunas palabras que están debajo del logo:
       
     %h2 ¿De qué trata el negocio?
     %p
-      En pocas palabras, y para aquellos no versados en la materia, consiste en una compra y venta de textos a trav'es de internet.
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-    .center
-      =image_tag "biznames/gfx_biz_model.png", :style => "margin-bottom: 15px; "
+      ="En #{link_to("este link", "http://www.escribir-y-ganar.com", :target=>"blank")} "
+      se puede ver una primera imagen de como será el texto de la página principal. Así os haceis una idea.
+    
     %p
-      Por un lado hay clientes que demandan textos y, por otro, autores que los escriben. Por tanto la p'agina tendr'a esas dos partes diferenciadas: una a la que acceden aquellos interesados en conseguir contenido para sus sitios webs y otra para los quieren ganar dinero r'apido escribiendo sobre temas en los que no necesutan ser expertos.
+      En pocas palabras, y para aquellos no sepan mucho del tema, consiste en una compra y venta de textos a través de internet.
+
+    .center
+      =image_tag "biznames/gfx_biz_model.png.jpg", :style => "margin-bottom: 15px; "
+    %p
+      Por un lado hay clientes que demandan textos y, por otro, autores que los escriben. Por tanto la página tendrá esas dos partes diferenciadas: una a la que acceden aquellos interesados en conseguir contenido para sus sitios webs y otra para los quieren ganar dinero rápido escribiendo sobre temas en los que no necesitan ser expertos.
     %p
       Nosotros estamos en medio ofreciendo un lugar para el intercambio, pagando a los escritores y siendo pagados por los que buscan contenido.    
   
     .clear
 
-    %h2 ¿Que debo hazer?
+    %h2 ¿Cómo ayudo?
     %p
-      En los campos abajo puedes mandar tu sugestion.
-      Unos amigos ya lo hizieron, asi te puedes inpirar y ver lo que dijeron los demas pinchando a la enlace que esta abajo.
+      Puedes ver lo que han propuesto los demás, pero quizás sea mejor que hagas una sugerencia sin influencias. Despues te puedes inspirar en las ideas ajenas y hacer una segunda, o tercera, cuarta, quinta... ;-)
     %p
-      Pensamos que es mejor si primero piensas solo, para no ser influido por los demas, asi generamos las mejores ideas.
-    %p
-      blabla
-    
+      El ganador recibirá una sandwichera y un <b>premio sorpresa</b>
+      
+      
+      
+      
+      
     .div{:style => "height: 0px; border: solid 1px #DDDDDD; padding: 0px 10px 0px 10px"}
     
     #suggestion_form
-      %h2 Tu sugestión
+      %h2 Tu sugerencia
       - form_for @bizname do |f|
         = f.error_messages
         .grid_6.alpha
           %p
-            = f.label :name, "Nombre del negocio/pagina:"
+            = f.label :name, "Nombre del negocio/página:"
             %br
             = f.text_field :name, :class => "clear_field"
           %p
@@ -72,14 +80,14 @@
         .clear
         .center
           %p
-            = f.submit 'Mandar sugestión', :id => "submit"
+            = f.submit 'Mandar sugerencia', :id => "submit"
       
     .div{:style => "height: 0px; border: solid 1px #DDDDDD; padding: 0px 10px 0px 10px"}    
 
     .h_20
     .center
-      =link_to_function("Mostrar lo que dijeron los demas", "show_suggestions()", :id => "show_suggestions_link", :class => "very_big_link")
-      =link_to_function("Quiero hazer otra sugestión", "another_suggestion()", :id => "another_suggestion_link", :class => "very_big_link hidden")
+      =link_to_function("Ver que dijeron los demás", "show_suggestions()", :id => "show_suggestions_link", :class => "very_big_link")
+      =link_to_function("Hacer otra sugestión", "another_suggestion()", :id => "another_suggestion_link", :class => "very_big_link hidden")
       
     .h_20
     #suggestions_table.hidden
@@ -116,9 +124,6 @@
             minlength: 3,
             maxlength: 40
           },
-          "bizname[tagline]": {
-            required: true
-          },
           "bizname[email]": {
             email: true
           },
@@ -130,12 +135,12 @@
         },
         messages: {
           "bizname[name]": {
-            required: "Porfavor ayudanos y llena este campo",
+            required: "¡Eh, tú, rellena el campo!",
             minlength: "Al menos 3 letras",
             maxlength: "No mas que 40 letras"
             },
           "bizname[friend]": {
-            required: "Dinos quien eres asi ganas algo por el caso que elegimos tu surgerencia"
+            required: "¡Mejor di tu nombre para que puedas ganar el premio!"
           },
           "bizname[tagline]": {
             required: "Porfavor ayudanos y llena este campo",
@@ -143,7 +148,7 @@
             maxlength: "No mas que 40 letras"
             },
           "bizname[email]": {
-              email: "No es un email valido"
+              email: "No es un email válido"
             }
           
           

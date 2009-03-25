@@ -50,7 +50,7 @@ class CreateUsers < ActiveRecord::Migration
       }
 
     admins_to_create=[
-        {:login => "elena",  :name => "Elena", :surname => "Contioso Fleming", :email => "elena_admin@xalut.com",  :gender => "female"},
+        {:login => "elena",  :name => "Elena", :surname => "Contioso Fleming", :email => "contiosofleming@gmail.com",  :gender => "female"},
         {:login => "fabian", :name => "Fabian", :surname => "Dittrich", :email => "fabian.dittrich@gmail.com", :gender => "male"}]
 
     distributors_to_create=[

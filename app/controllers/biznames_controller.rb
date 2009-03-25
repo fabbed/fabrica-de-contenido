@@ -47,6 +47,11 @@ class BiznamesController < ApplicationController
 
     respond_to do |wants|
       if @bizname.save
+        
+        Administrator.each do |admin|
+          UserMailer.deliver_author_signup_notification(admin, params[:bizname][:friend])
+        end
+        
         wants.js do
           render :partial => "bizname_created"
         end

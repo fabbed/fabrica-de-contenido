@@ -13,6 +13,13 @@ class UserMailer < ActionMailer::Base
   end
 
 
+  def new_suggestion_arrived(user, name_of_suggester)
+    setup_email(user)
+    @subject    += 'Nueva surgerencia de: ' + name_of_suggester
+  end
+
+
+
   
   def activation(user)
     setup_email(user)
