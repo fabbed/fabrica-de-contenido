@@ -17,6 +17,16 @@ module ApplicationHelper
   end
 
 
+  def get_flag_for_user(user)
+    return (image_tag "flags/" + user.country.iso.upcase + ".gif")
+  end
+
+  def get_flag_for_bizname(bizname)
+    return (image_tag "flags/" + bizname.country_code.upcase + ".gif")
+  end
+
+
+
   def formated_money(money, main_currency)
     if main_currency == "CLP"
       "#{money.as_euro.format} (#{money.format(:no_cents)})"

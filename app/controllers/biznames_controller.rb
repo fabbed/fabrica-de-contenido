@@ -5,6 +5,7 @@ class BiznamesController < ApplicationController
   layout "suggestions"
   
   def index
+
     @biznames = Bizname.all
     @bizname = Bizname.new
     respond_to do |format|
@@ -47,6 +48,14 @@ class BiznamesController < ApplicationController
 
     respond_to do |wants|
       if @bizname.save
+
+        ip = request.remote_ip
+        location = IpGeocoder.geocode(ip)
+        @bizname.lat = location.lat
+        @bizname.lng = location.lng
+        @bizname.country_code = location.country_code
+        @bizname.ip = ip
+        @bizname.save
 
         flash[:notice] = "Y mañana... ¡más!"
         

@@ -121,6 +121,8 @@
             %tr
               %td
                 = h biznames.friend
+                -if biznames.country_code
+                  =get_flag_for_bizname(biznames) 
                 %br
                 ="(Conoce a #{biznames.affiliate})"
               %td
