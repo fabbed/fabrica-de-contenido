@@ -47,9 +47,11 @@ class BiznamesController < ApplicationController
 
     respond_to do |wants|
       if @bizname.save
+
+        flash[:notice] = "Y mañana... ¡más!"
         
-        Administrator.each do |admin|
-          UserMailer.deliver_author_signup_notification(admin, params[:bizname][:friend])
+        Administrator.all.each do |admin|
+          UserMailer.deliver_new_suggestion_arrived(admin, params[:bizname][:friend])
         end
         
         wants.js do
