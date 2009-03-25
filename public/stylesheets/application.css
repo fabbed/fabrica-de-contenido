@@ -28,6 +28,14 @@ a.red {
   font-size: 14px;
   line-height: 18px; }
 
+.biznames .elena {
+  color: #F53166; }
+.biznames .fabian {
+  color: #2532F5; }
+.biznames #points {
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px; }
 .biznames h1 {
   font-size: 20px; }
 .biznames p {
@@ -51,7 +59,7 @@ a.red {
     line-height: 2px; }
   .biznames .form textarea {
     margin-top: 0px;
-    height: 264px; }
+    height: 323px; }
   .biznames .form input[type="text"] {
     border: solid 1px #999999;
     width: 100%;

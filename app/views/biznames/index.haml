@@ -1,166 +1,189 @@
-.grid_12.prefix_2.suffix_2.bottom-margin-20.biznames
-  .form
-    %h1{:style => "margin-bottom: 0px;"}
-      Sugerencias para el nombre del negocio de Elena y Fabian
-    %h2.center{:style => "margin-top: 10px;"}
-      ¡Sugiere y gana un <b>premio sorpresa</b>!
+.biznames
+  .grid_12.prefix_2.suffix_2.bottom-margin-20
+    .form
+      %h1{:style => "margin-bottom: 0px;"}
+        Sugerencias para el nombre del negocio de Elena y Fabian
+      %h2.center{:style => "margin-top: 10px;"}
+        ¡Sugiere y gana un <b>premio sorpresa</b>!
     
-    %p
-      Elena y yo estamos planeando montar un pequeño negocio.
-      Como ayuda para encontrar un nombre hemos pensado en preguntar a nuestros amigos.
+      %p
+        Elena y yo estamos planeando montar un pequeño negocio.
+        Como ayuda para encontrar un nombre hemos pensado en preguntar a nuestros amigos.
       
-    .fr
-      =image_tag "biznames/youtube_example.png"
+      .fr
+        =image_tag "biznames/youtube_example.png"
 
-    %p
-      Buscamos nombre y tagline. El nombre será el dominio de la pagina, lo que muestra el logo, etc.
-      %br
-      El tagline es una frase o algunas palabras que están debajo del logo:
+      %p
+        Buscamos nombre y tagline. El nombre será el dominio de la pagina, lo que muestra el logo, etc.
+        %br
+        El tagline es una frase o algunas palabras que están debajo del logo:
       
-    %h2 ¿De qué trata el negocio?
-    %p
-      ="En #{link_to("este link", "http://www.escribir-y-ganar.com", :target=>"blank")} "
-      se puede ver una primera imagen de como será el texto de la página principal. Así os haceis una idea.
+      %h2 ¿De qué trata el negocio?
+      %p
+        ="En #{link_to("este link", "http://www.escribir-y-ganar.com", :target=>"blank")} "
+        se puede ver una primera imagen de como será el texto de la página principal. Así os haceis una idea.
     
-    %p
-      En pocas palabras, y para aquellos no sepan mucho del tema, consiste en una compra y venta de textos a través de internet.
+      %p
+        En pocas palabras, y para aquellos no sepan mucho del tema, consiste en una compra y venta de textos a través de internet.
 
-    .center
-      =image_tag "biznames/gfx_biz_model.png.jpg", :style => "margin-bottom: 15px; "
-    %p
-      Por un lado hay clientes que demandan textos y, por otro, autores que los escriben. Por tanto la página tendrá esas dos partes diferenciadas: una a la que acceden aquellos interesados en conseguir contenido para sus sitios webs y otra para los quieren ganar dinero rápido escribiendo sobre temas en los que no necesitan ser expertos.
-    %p
-      Nosotros estamos en medio ofreciendo un lugar para el intercambio, pagando a los escritores y siendo pagados por los que buscan contenido.    
+      .center
+        =image_tag "biznames/gfx_biz_model.png.jpg", :style => "margin-bottom: 15px; "
+      %p
+        Por un lado hay clientes que demandan textos y, por otro, autores que los escriben. Por tanto la página tendrá esas dos partes diferenciadas: una a la que acceden aquellos interesados en conseguir contenido para sus sitios webs y otra para los quieren ganar dinero rápido escribiendo sobre temas en los que no necesitan ser expertos.
+      %p
+        Nosotros estamos en medio ofreciendo un lugar para el intercambio, pagando a los escritores y siendo pagados por los que buscan contenido.    
   
-    .clear
+      .clear
 
-    %h2 ¿Cómo ayudo?
-    %p
-      Puedes ver lo que han propuesto los demás, pero quizás sea mejor que hagas una sugerencia sin influencias. Despues te puedes inspirar en las ideas ajenas y hacer una segunda, o tercera, cuarta, quinta... ;-)
-    %p
-      El ganador recibirá una sandwichera y un <b>premio sorpresa</b>
+      %h2 ¿Cómo ayudo?
+      %p
+        Puedes ver lo que han propuesto los demás, pero quizás sea mejor que hagas una sugerencia sin influencias. Despues te puedes inspirar en las ideas ajenas y hacer una segunda, o tercera, cuarta, quinta... ;-)
+      %p
+        El ganador recibirá una sandwichera y un <b>premio sorpresa</b>
       
       
       
       
       
-    .div{:style => "height: 0px; border: solid 1px #DDDDDD; padding: 0px 10px 0px 10px"}
+      .div{:style => "height: 0px; border: solid 1px #DDDDDD; padding: 0px 10px 0px 10px"}
     
-    #suggestion_form
-      %h2 Tu sugerencia
-      - form_for @bizname do |f|
-        = f.error_messages
-        .grid_6.alpha
-          %p
-            = f.label :name, "Nombre del negocio/página:"
-            %br
-            = f.text_field :name, :class => "clear_field"
-          %p
-            = f.label :tagline, "Tagline:"
-            %br
-            = f.text_field :tagline, :class => "clear_field"
-          %p
-            = f.label :friend, "Tu nombre:"
-            %br
-            = f.text_field :friend
-          %p
-            = f.label :email, "Tu email:", :class => "with_subtitle"
-            %br 
-            %span.subtitle
-              Danos tu Email si quieres recibir noticias sobre nuestro negocio (No vamos a mostrar tu email a nadie)
-            %br
-            = f.text_field :email
-
-
-        .grid_4.omega
-          %p
-            = f.label :comment, "Comentario, Descripcion:"
-            %br
-            = f.text_area :comment, :size => "37x15"
-        .clear
-        .center
-          %p
-            = f.submit 'Mandar sugerencia', :id => "submit"
-      
-    .div{:style => "height: 0px; border: solid 1px #DDDDDD; padding: 0px 10px 0px 10px"}    
-
-    .h_20
-    .center
-      =link_to_function("Ver que dijeron los demás", "show_suggestions()", :id => "show_suggestions_link", :class => "very_big_link")
-      =link_to_function("Hacer otra sugestión", "another_suggestion()", :id => "another_suggestion_link", :class => "very_big_link hidden")
-      
-    .h_20
-    #suggestions_table.hidden
-      %h2 Sugerencias de los demas
-      %table#my_table
-        %tr
-          %th
-            Nombre del negocio/página
-          %th
-            Tagline
-          %th
-            Comentario
-          %th
-            Surgerencia de...
-        - @biznames.each do |biznames|
-          %tr
-            %td
-              = h biznames.name
-            %td
-              = h biznames.tagline
-            %td
-              = h biznames.comment
-            %td
-              = h biznames.friend
-
-
-- content_for :javascript do
-  :javascript
-    $(document).ready(function() {
-      var validator = $("#new_bizname").validate({
-        rules: {
-          "bizname[name]": {
-            required: true,
-            minlength: 3,
-            maxlength: 40
-          },
-          "bizname[email]": {
-            email: true
-          },
-          "bizname[friend]": {
-            required: true
-          }
-          
+      #suggestion_form
         
-        },
-        messages: {
-          "bizname[name]": {
-            required: "¡Eh, tú, rellena el campo!",
-            minlength: "Al menos 3 letras",
-            maxlength: "No mas que 40 letras"
+        %h2 Tu sugerencia
+        - form_for @bizname do |f|
+          = f.error_messages
+          .grid_6.alpha
+            %p
+              = f.label :name, "Nombre del negocio/página:"
+              %br
+              = f.text_field :name, :class => "clear_field"
+            %p
+              = f.label :tagline, "Tagline:"
+              %br
+              = f.text_field :tagline, :class => "clear_field"
+            %p
+              = f.label :friend, "Tu nombre:"
+              %br
+              = f.text_field :friend
+            %p
+              = f.label :email, "Tu email:", :class => "with_subtitle"
+              %br 
+              %span.subtitle
+                Danos tu Email si quieres recibir noticias sobre nuestro negocio (No vamos a mostrar tu email a nadie)
+              %br
+              = f.text_field :email
+            %p
+              = f.label :affiliate, "¿A quien conoces?:"
+              %br
+              = f.select :affiliate, [[ "Fabian", "fabian" ], [ "Elena", "elena" ]], :include_blank => true
+
+
+          .grid_4.omega
+            %p
+              = f.label :comment, "Comentario, Descripcion:"
+              %br
+              = f.text_area :comment, :size => "37x15"
+          .clear
+          .center
+            %p
+              = f.submit 'Mandar sugerencia', :id => "submit"
+      
+      .div{:style => "height: 0px; border: solid 1px #DDDDDD; padding: 0px 10px 0px 10px"}    
+
+      .h_20
+      .center
+        =link_to_function("Ver que dijeron los demás", "show_suggestions()", :id => "show_suggestions_link", :class => "very_big_link")
+        =link_to_function("Hacer otra sugestión", "another_suggestion()", :id => "another_suggestion_link", :class => "very_big_link hidden")
+      
+      #suggestions_table.hidden
+        %h2 Sugerencias de los demás
+
+        #points.center.bold
+          %span.elena
+            ="Elena #{Bizname.count(:all, :conditions => ["affiliate = 'elena'"])}"
+          \:
+          %span.fabian          
+            ="#{Bizname.count(:all, :conditions => ["affiliate = 'fabian'"])} Fabian"
+
+
+
+        %table#my_table
+          %tr
+            %th
+              Surgerencia de...
+            %th
+              Nombre del negocio/página
+            %th
+              Tagline
+            %th
+              Comentario
+          - @biznames.each do |biznames|
+            %tr
+              %td
+                = h biznames.friend
+                %br
+                ="(Conoce a #{biznames.affiliate})"
+              %td
+                = h biznames.name
+              %td
+                = h biznames.tagline
+              %td
+                = h biznames.comment
+
+
+  - content_for :javascript do
+    :javascript
+      $(document).ready(function() {
+        var validator = $("#new_bizname").validate({
+          rules: {
+            "bizname[name]": {
+              required: true,
+              minlength: 3,
+              maxlength: 40
             },
-          "bizname[friend]": {
-            required: "¡Mejor di tu nombre para que puedas ganar el premio!"
-          },
-          "bizname[tagline]": {
-            required: "Porfavor ayudanos y llena este campo",
-            minlength: "Al menos 3 letras",
-            maxlength: "No mas que 40 letras"
+            "bizname[email]": {
+              email: true
             },
-          "bizname[email]": {
-              email: "No es un email válido"
+            "bizname[affiliate]": {
+              required: true
+            },
+            "bizname[friend]": {
+              required: true
             }
           
-          
-          },
-
-      submitHandler: function(form) {
-          $(form).ajaxSubmit({ 
-              success: function(response){
-                eval(response);
-              }
-           });
-      }        
         
+          },
+          messages: {
+            "bizname[name]": {
+              required: "¡Eh, tú, rellena el campo!",
+              minlength: "Al menos 3 letras",
+              maxlength: "No mas que 40 letras"
+              },
+            "bizname[friend]": {
+              required: "¡Mejor di tu nombre para que puedas ganar el premio!"
+            },
+            "bizname[affiliate]": {
+              required: "¡Dilo, esto es la guerra!"
+            },
+            "bizname[tagline]": {
+              required: "Porfavor ayudanos y llena este campo",
+              minlength: "Al menos 3 letras",
+              maxlength: "No mas que 40 letras"
+              },
+            "bizname[email]": {
+                email: "No es un email válido"
+              }
+          
+          
+            },
+
+        submitHandler: function(form) {
+            $(form).ajaxSubmit({ 
+                success: function(response){
+                  eval(response);
+                }
+             });
+        }        
+        
+        });
       });
-    });
