@@ -39,13 +39,13 @@ Git reset --hard
 
 
 
-1     production:                                                                                                                              
-2     adapter: mysql
-3     encoding: utf8
-4     database: escribir_y_ganar
-5     username: fabbed
-6     password: f4b8ed
-7     socket: /var/run/mysqld/mysqld.sock
+production:                                                                                                                              
+  adapter: mysql
+  encoding: utf8
+  database: escribir_y_ganar
+  username: fabbed
+  password: f4b8ed
+  socket: /var/run/mysqld/mysqld.sock
 
 
 

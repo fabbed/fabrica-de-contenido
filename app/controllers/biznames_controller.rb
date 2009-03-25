@@ -6,7 +6,7 @@ class BiznamesController < ApplicationController
   
   def index
 
-    @biznames = Bizname.all
+    @biznames = Bizname.find(:all, :order => "created_at desc")
     @bizname = Bizname.new
     respond_to do |format|
       format.html # index.html.erb
